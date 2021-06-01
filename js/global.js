@@ -91,9 +91,9 @@ const selectedProducts = []
 const plus_list = document.querySelectorAll(".plus")
 plus_list.forEach(element => {
     element.addEventListener("click", () => {
-        let selectedItemIndex = parseInt(element.nextElementSibling.dataset.id)
+        let selectedItemIndex = parseInt(element.previousElementSibling.dataset.id)
         let elementIndex = selectedProducts.indexOf(selectedProducts.find(element => element.id === selectedItemIndex + 1))
-        element.nextElementSibling.value++
+        element.previousElementSibling.value++
 
         if(elementIndex == -1) {
             selectedProducts.push({ ...products[selectedItemIndex], amount: 1 })
@@ -108,11 +108,11 @@ plus_list.forEach(element => {
 const minus_list = document.querySelectorAll(".minus")
 minus_list.forEach(element => {
     element.addEventListener("click", () => {
-        let selectedItemIndex = parseInt(element.previousElementSibling.dataset.id)
+        let selectedItemIndex = parseInt(element.nextElementSibling.dataset.id)
         let elementIndex = selectedProducts.indexOf(selectedProducts.find(element => element.id === selectedItemIndex + 1))
         
         if(elementIndex > -1) {
-            element.previousElementSibling.value--
+            element.nextElementSibling.value--
 
             if(selectedProducts[elementIndex].amount === 1) {
                 selectedProducts.splice(elementIndex, 1)
